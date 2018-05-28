@@ -6,6 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    BaseSensor* baseSensor = new BaseSensor(this);
+
+
+    ui->lcdNumberTemp->display(baseSensor->getValue());
 }
 
 MainWindow::~MainWindow()
