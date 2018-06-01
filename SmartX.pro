@@ -26,11 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+    Device/BaseDevice.cpp \
+    Sensors/SensorData.cpp \
     Sensors/BaseSensor.cpp
 
 HEADERS += \
         mainwindow.h \
-    Sensors/BaseSensor.h
+    Sensors/BaseSensor.h \
+    Device/BaseDevice.h \
+    Sensors/SensorData.h
 
 FORMS += \
         mainwindow.ui

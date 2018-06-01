@@ -7,9 +7,9 @@ class BaseSensor : public QObject
 {
     Q_OBJECT
 public:
-    explicit BaseSensor(QObject *parent = nullptr);
-    int getValue();
-
+    explicit BaseSensor(QObject *parent);
+private:
+    QList mSensorsList;
 signals:
 
 public slots:
