@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     Device/BaseDevice.cpp \
     Sensors/SensorData.cpp \
-    Sensors/BaseSensor.cpp
+    Sensors/BaseSensor.cpp \
+    Communication/BaseCommunicationInterface.cpp
 
 HEADERS += \
         mainwindow.h \
     Sensors/BaseSensor.h \
     Device/BaseDevice.h \
-    Sensors/SensorData.h
+    Sensors/SensorData.h \
+    Communication/BaseCommunicationInterface.h
 
 FORMS += \
         mainwindow.ui

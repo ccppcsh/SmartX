@@ -9,8 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     BaseSensor* baseSensor = new BaseSensor(this);
 
+    auto sensorData = baseSensor->getSensorsDataList()[0];
 
-    ui->lcdNumberTemp->display(baseSensor->getValue());
+    ui->lcdNumberTemp->display(sensorData.getValue());
 }
 
 MainWindow::~MainWindow()

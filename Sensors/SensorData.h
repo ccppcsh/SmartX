@@ -6,7 +6,7 @@
 class SensorData
 {
 public:
-    SensorData();
+    SensorData(QString name);
     float getValue();
     QString getName();
     void setValue(float value);

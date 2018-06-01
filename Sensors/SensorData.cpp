@@ -1,8 +1,8 @@
 #include "SensorData.h"
 
-SensorData::SensorData()
+SensorData::SensorData(QString name)
 {
-
+    mName = name;
 }
 
 float SensorData::getValue()
