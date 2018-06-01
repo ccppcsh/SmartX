@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += serialport
+
 TARGET = SmartX
 TEMPLATE = app
 
@@ -29,14 +31,16 @@ SOURCES += \
     Device/BaseDevice.cpp \
     Sensors/SensorData.cpp \
     Sensors/BaseSensor.cpp \
-    Communication/BaseCommunicationInterface.cpp
+    Communication/BaseCommunicationInterface.cpp \
+    Communication/SerialInterface.cpp
 
 HEADERS += \
         mainwindow.h \
     Sensors/BaseSensor.h \
     Device/BaseDevice.h \
     Sensors/SensorData.h \
-    Communication/BaseCommunicationInterface.h
+    Communication/BaseCommunicationInterface.h \
+    Communication/SerialInterface.h
 
 FORMS += \
         mainwindow.ui
