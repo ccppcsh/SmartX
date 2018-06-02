@@ -8,11 +8,13 @@
 class SerialInterface : public BaseCommunicationInterface
 {
 public:
-    explicit SerialInterface(QObject *parent = nullptr);
-    virtual void connect();
-    virtual void disconnect();
-    virtual void send(const QList<uint8_t>& bytes);
-    virtual void isConnected();
+    explicit SerialInterface(QString portName, QObject *parent = nullptr);
+    virtual bool connect(int baudrate);
+    virtual bool disconnect();
+    virtual int send(const QList<uint8_t>& bytes);
+    virtual bool isConnected();
+private:
+    QString mPortName;
 };
 
 #endif // SERIALINTERFACE_H

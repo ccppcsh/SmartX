@@ -1,26 +1,26 @@
 #include "SerialInterface.h"
 
-SerialInterface::SerialInterface(QObject *parent) : BaseCommunicationInterface(parent)
+SerialInterface::SerialInterface(QString portName, QObject *parent) : BaseCommunicationInterface(parent)
+{
+    mPortName = portName;
+}
+
+bool SerialInterface::connect(int baudrate)
 {
 
 }
 
-void SerialInterface::connect()
+bool SerialInterface::disconnect()
 {
 
 }
 
-void SerialInterface::disconnect()
+int SerialInterface::send(const QList<uint8_t> &bytes)
 {
 
 }
 
-void SerialInterface::send(const QList<uint8_t> &bytes)
-{
-
-}
-
-void SerialInterface::isConnected()
+bool SerialInterface::isConnected()
 {
 
 }
