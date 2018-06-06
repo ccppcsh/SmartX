@@ -13,14 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->lcdNumberTemp->display(sensorData.getValue());
 
-    auto serialPorts = QSerialPortInfo::availablePorts();
 
-    for (int i = 0; i < serialPorts.length(); i++)
-    {
-        ui->listWidget->addItem(serialPorts[i].portName());
-    }
-
-    ui->listWidget->addItem(QString(COM_PORT_NAME));
 }
 
 MainWindow::~MainWindow()
