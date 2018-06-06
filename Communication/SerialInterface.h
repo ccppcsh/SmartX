@@ -4,17 +4,22 @@
 #include "BaseCommunicationInterface.h"
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QException>
 
 class SerialInterface : public BaseCommunicationInterface
 {
 public:
-    explicit SerialInterface(QString portName, QObject *parent = nullptr);
-    virtual bool connect(int baudrate);
-    virtual bool disconnect();
-    virtual int send(const QList<uint8_t>& bytes);
+    explicit SerialInterface(QString portName, int baudrate, QObject *parent = nullptr);
+    virtual ErrorCode connect();
+    virtual ErrorCode disconnect();
+    virtual ErrorCode send(const QByteArray& bytes);
     virtual bool isConnected();
+    virtual ~SerialInterface();
 private:
     QString mPortName;
+    int mBaudrate;
+    QSerialPort* mCOMPort;
+    bool mIsConnected = false;
 };
 
 #endif // SERIALINTERFACE_H
