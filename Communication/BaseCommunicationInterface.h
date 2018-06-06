@@ -7,11 +7,19 @@ class BaseCommunicationInterface : public QObject
 {
     Q_OBJECT
 public:
+    enum ErrorCode{
+        OK = 0,
+        INTERFACE_NOT_AVAILABLE = 1,
+        WRONG_INTERFACE_PARAMETERS = 2,
+        ERROR_BY_OPEN_PORT = 3,
+        INTERFACE_IS_NOT_CONNECTED = 4,
+        ERROR_BY_SENDING_DATA = 5
+    };
     explicit BaseCommunicationInterface(QObject *parent = nullptr);
-    virtual bool connect() = 0;
-    virtual bool disconnect() = 0;
+    virtual ErrorCode connect() = 0;
+    virtual ErrorCode disconnect() = 0;
     virtual bool isConnected() = 0;
-    virtual int send(const QList<uint8_t>& bytes) = 0;
+    virtual ErrorCode send(const QByteArray& bytes) = 0;
 
 signals:
     // TODO: Define callback on data receiveing
