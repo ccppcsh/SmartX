@@ -8,6 +8,7 @@
 
 class SerialInterface : public BaseCommunicationInterface
 {
+    Q_OBJECT
 public:
     explicit SerialInterface(QString portName, int baudrate, QObject *parent = nullptr);
     virtual ErrorCode connect();
@@ -20,6 +21,8 @@ private:
     int mBaudrate;
     QSerialPort* mCOMPort;
     bool mIsConnected = false;
+public slots:
+    void dataReceived();
 };
 
 #endif // SERIALINTERFACE_H

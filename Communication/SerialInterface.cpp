@@ -42,7 +42,10 @@ BaseCommunicationInterface::ErrorCode SerialInterface::connect()
     mCOMPort->setDataBits(QSerialPort::Data8);
     mCOMPort->setStopBits(QSerialPort::OneStop);
 
+    QObject::connect(mCOMPort, SIGNAL(readyRead()), this, SLOT(dataReceived()));
+
     auto openResult = mCOMPort->open(QIODevice::ReadWrite);
+    auto errorCode = mCOMPort->errorString();
 
     if (openResult)
     {
@@ -62,6 +65,7 @@ BaseCommunicationInterface::ErrorCode SerialInterface::connect()
  */
 BaseCommunicationInterface::ErrorCode SerialInterface::disconnect()
 {
+    QObject::disconnect(mCOMPort, SIGNAL(readyRead()), this, SLOT(dataReceived()));
     mCOMPort->close();
 
     return OK;
@@ -98,6 +102,15 @@ bool SerialInterface::isConnected()
 
 SerialInterface::~SerialInterface()
 {
-    mCOMPort->close();
+    this->disconnect();
+
     delete mCOMPort;
+}
+
+/**
+ * @brief SerialInterface::dataReceived - callback method which will be called when signal readyRead was raised
+ */
+void SerialInterface::dataReceived()
+{
+
 }
