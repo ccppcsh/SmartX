@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QSerialPortInfo"
+#include "Communication/SerialInterface.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -13,7 +15,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->lcdNumberTemp->display(sensorData.getValue());
 
+    SerialInterface* comPort = new SerialInterface(COM_PORT_NAME, 115200);
+    comPort->connect();
 
+    QByteArray bytes = QByteArray();
+    bytes.append(5, 'A');
+
+    comPort->send(bytes);
+
+    comPort->disconnect();
 }
 
 MainWindow::~MainWindow()
