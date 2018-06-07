@@ -4,8 +4,6 @@ SerialInterface::SerialInterface(QString portName, int baudrate, QObject *parent
 {
     mPortName = portName;
     mBaudrate = baudrate;
-
-    mCOMPort = new QSerialPort();
 }
 
 /**
@@ -14,6 +12,9 @@ SerialInterface::SerialInterface(QString portName, int baudrate, QObject *parent
  */
 BaseCommunicationInterface::ErrorCode SerialInterface::connect()
 {
+    disconnect();
+
+    mCOMPort = new QSerialPort();
     auto availablePorts = QSerialPortInfo::availablePorts();
     bool isPortAvailable = false;
 
@@ -65,8 +66,13 @@ BaseCommunicationInterface::ErrorCode SerialInterface::connect()
  */
 BaseCommunicationInterface::ErrorCode SerialInterface::disconnect()
 {
-    QObject::disconnect(mCOMPort, SIGNAL(readyRead()), this, SLOT(dataReceived()));
-    mCOMPort->close();
+    if (mCOMPort != null)
+    {
+        QObject::disconnect(mCOMPort, SIGNAL(readyRead()), this, SLOT(dataReceived()));
+        mCOMPort->close();
+        delete mCOMPort;
+        mIsConnected = false;
+    }
 
     return OK;
 }
