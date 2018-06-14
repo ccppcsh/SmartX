@@ -23,7 +23,7 @@ public:
 
 signals:
     // TODO: Define callback on data receiveing
-    void onDataReceived(QList<uint8_t>& data);
+    void onDataReceived(const QByteArray& data);
 public slots:
 };
 
