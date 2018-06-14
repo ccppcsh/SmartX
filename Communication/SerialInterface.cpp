@@ -66,11 +66,14 @@ BaseCommunicationInterface::ErrorCode SerialInterface::connect()
  */
 BaseCommunicationInterface::ErrorCode SerialInterface::disconnect()
 {
-    if (mCOMPort != null)
+    if (mCOMPort != NULL)
     {
         QObject::disconnect(mCOMPort, SIGNAL(readyRead()), this, SLOT(dataReceived()));
         mCOMPort->close();
+
         delete mCOMPort;
+
+        mCOMPort = NULL;
         mIsConnected = false;
     }
 
@@ -92,8 +95,10 @@ BaseCommunicationInterface::ErrorCode SerialInterface::send(const QByteArray& by
     {
         return ERROR_BY_SENDING_DATA;
     }
+
     mCOMPort->flush();
 
+    auto errorCode = mCOMPort->errorString();
     return OK;
 }
 
@@ -109,8 +114,6 @@ bool SerialInterface::isConnected()
 SerialInterface::~SerialInterface()
 {
     this->disconnect();
-
-    delete mCOMPort;
 }
 
 /**
@@ -118,5 +121,7 @@ SerialInterface::~SerialInterface()
  */
 void SerialInterface::dataReceived()
 {
+    auto readBytes = mCOMPort->readAll();
 
+    emit onDataReceived(readBytes);
 }

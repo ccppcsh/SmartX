@@ -19,7 +19,7 @@ public:
 private:
     QString mPortName;
     int mBaudrate;
-    QSerialPort* mCOMPort;
+    QSerialPort* mCOMPort = NULL;
     bool mIsConnected = false;
 public slots:
     void dataReceived();
