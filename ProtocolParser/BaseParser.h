@@ -16,7 +16,7 @@ class BaseParser: public QObject
     Q_OBJECT
 public:
     BaseParser(QObject *parent = nullptr);
-private:
+protected:
     /**
      * @brief parseBytes - parses received bytes and build from that an object of parcel which contains only data to handle
      * @param bytes
