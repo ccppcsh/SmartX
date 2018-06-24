@@ -34,3 +34,5 @@ Makefile*
 *.qmlproject.user.*
 
 build-Tests-Desktop_Qt_5_10_1_GCC_64bit-Debug/
+
+build-UnitTests-Desktop_Qt_5_10_1_GCC_64bit-Debug/
