@@ -1,4 +1,9 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Sensors/DSDTechSHT20/TestTempHumSHT20Parser \
+    TestTempHumSHT20Parser
+
+
+INCLUDEPATH += ../Sensors/DSDTechSHT20
+INCLUDEPATH += ../Sensors
+
