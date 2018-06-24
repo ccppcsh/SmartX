@@ -45,8 +45,8 @@ void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited_data
 
     QTest::newRow("One parcel inside") << "\r\n\PAYLOAD DATA\r\n" << 1;
     QTest::newRow("One parcel inside with trash before") << "TRASH\r\n\PAYLOAD DATA\r\n" << 1;
-    QTest::newRow("Three parcel inside") << "\r\n\PAYLOAD DATA #1\r\nPAYLOAD DATA #2\r\nPAYLOAD DATA #3\r\n" << 3;
-    QTest::newRow("Three parcel inside with trash before and after") << "TRASH BEFORE\r\n\PAYLOAD DATA #1\r\nPAYLOAD DATA #2\r\nPAYLOAD DATA #3\r\nTRASH AFTER" << 3;
+    QTest::newRow("Three parcels inside") << "\r\n\PAYLOAD DATA #1\r\nPAYLOAD DATA #2\r\nPAYLOAD DATA #3\r\n" << 3;
+    QTest::newRow("Three parcels inside with trash before and after") << "TRASH BEFORE\r\n\PAYLOAD DATA #1\r\nPAYLOAD DATA #2\r\nPAYLOAD DATA #3\r\nTRASH AFTER" << 3;
 }
 
 void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited()
