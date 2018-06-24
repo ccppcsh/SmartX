@@ -1,11 +1,11 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-06-22T14:45:30
+# Project created by QtCreator 2018-06-24T13:36:19
 #
 #-------------------------------------------------
 
 QT       += testlib
-
+QT       += serialport
 QT       -= gui
 
 TARGET = TestTempHumSHT20Parser
@@ -30,3 +30,4 @@ SOURCES += \
         TestTempHumSHT20Parser.cpp 
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+include(../../srcinclude.pri)
