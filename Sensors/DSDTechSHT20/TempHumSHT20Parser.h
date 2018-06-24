@@ -2,6 +2,7 @@
 #define TEMPHUMSHT20PARSER_H
 
 #include "ProtocolParser/BaseParser.h"
+#include <QObject>
 
 /**
  * @file    TempHumSHT20Parser.h
@@ -13,6 +14,7 @@
 
 class TempHumSHT20Parser : public BaseParser
 {
+    Q_OBJECT
 public:
     TempHumSHT20Parser(QObject *parent = nullptr);
 private:
