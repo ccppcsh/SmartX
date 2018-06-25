@@ -5,6 +5,11 @@ Parcel::Parcel()
 
 }
 
+Parcel::Parcel(const Parcel& p)
+{
+    mPayloadBytes = p.mPayloadBytes;
+}
+
 const QByteArray &Parcel::getBytes()
 {
     return mPayloadBytes;

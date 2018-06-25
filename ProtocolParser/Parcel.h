@@ -13,6 +13,7 @@ class Parcel
 {
 public:
     Parcel();
+    Parcel(const Parcel& p);
     /**
      * @brief getBytes - returns a reference on array with received payload bytes
      * @return reference on QByteArray with received bytes
@@ -35,5 +36,5 @@ public:
 private:
     QByteArray mPayloadBytes;
 };
-
+Q_DECLARE_METATYPE(Parcel)
 #endif // PARCEL_H
