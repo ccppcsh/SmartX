@@ -1,6 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include "Sensors/DSDTechSHT20/TempHumSHT20Parser.h"
+#include "ProtocolParser/Parcel.h"
 
 class TestTempHumSHT20ParserTest : public QObject
 {
@@ -29,6 +30,7 @@ TestTempHumSHT20ParserTest::TestTempHumSHT20ParserTest()
 
 void TestTempHumSHT20ParserTest::init()
 {
+    // Create object and connect signals and slots
     parser = new TempHumSHT20Parser();
     QObject::connect(this, SIGNAL(mockInterfaceSignalDataRecevied(QByteArray)), parser, SLOT(onDataReceived(QByteArray)));
 }
@@ -40,9 +42,11 @@ void TestTempHumSHT20ParserTest::cleanup()
 }
 void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited_data()
 {
+    // Setup table
     QTest::addColumn<QString>("bytesStr");
     QTest::addColumn<int>("cntParcelExpected");
 
+    // Add cases
     QTest::newRow("One parcel inside") << "\r\n\PAYLOAD DATA\r\n" << 1;
     QTest::newRow("One parcel inside with trash before") << "TRASH\r\n\PAYLOAD DATA\r\n" << 1;
     QTest::newRow("Three parcels inside") << "\r\n\PAYLOAD DATA #1\r\nPAYLOAD DATA #2\r\nPAYLOAD DATA #3\r\n" << 3;
@@ -51,13 +55,10 @@ void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited_data
 
 void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited()
 {
-    //QString bytesStr;
-    //int parcelCnt;
+    // Arrange
     QFETCH(QString, bytesStr);
     QFETCH(int, cntParcelExpected);
 
-    // Arrange
-    //QByteArray bytes = QByteArray("\r\nPAYLOAD BYTES\r\n");
     QByteArray bytes = bytesStr.toLatin1();
     QSignalSpy spy(parser, SIGNAL(onParcelBuilt(Parcel&)));
 
@@ -70,7 +71,27 @@ void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_onParcelBuiltEmited()
 
 void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_ParsedCorrect()
 {
-    QVERIFY2(true, "Failure");
+    // Arrange
+    TempHumSHT20Parser* bytesParser = new TempHumSHT20Parser();
+    QVector<Parcel> parcels;
+
+    QString bytesStr = "\r\nPAYLOAD BYTES\r\n";
+    QString payloadBtes = "PAYLOAD BYTES";
+    QObject::connect(this, SIGNAL(mockInterfaceSignalDataRecevied(QByteArray)), bytesParser, SLOT(onDataReceived(QByteArray)));
+    QObject::connect(bytesParser, &TempHumSHT20Parser::onParcelBuilt, this, [&] (auto &parcel)
+        {
+            parcels.append(parcel);
+        });
+
+    // Act
+    emit mockInterfaceSignalDataRecevied(bytesStr.toLatin1());
+
+    // Assert
+    QCOMPARE(parcels.count(), 1);
+    QCOMPARE(parcels[0].getBytes(), payloadBtes.toLatin1());
+
+    QObject::disconnect(this, SIGNAL(mockInterfaceSignalDataRecevied(QByteArray)), bytesParser, SLOT(onDataReceived(QByteArray)));
+    delete bytesParser;
 }
 
 void TestTempHumSHT20ParserTest::parseBytes_ControlByteLost_ParserSkipsThisParcel()
