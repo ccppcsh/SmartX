@@ -96,7 +96,17 @@ void TestTempHumSHT20ParserTest::parseBytes_ValidParcel_ParsedCorrect()
 
 void TestTempHumSHT20ParserTest::parseBytes_ControlByteLost_ParserSkipsThisParcel()
 {
-    QVERIFY2(true, "Failure");
+    // Arrange
+    QString bytesStr = "\rPAYLOAD BYTES\r\nPAYLOAD BYTES\r\n";
+
+    QByteArray bytes = bytesStr.toLatin1();
+    QSignalSpy spy(parser, SIGNAL(onParcelBuilt(Parcel&)));
+
+    // Act
+    emit mockInterfaceSignalDataRecevied(bytes);
+
+    // Assert
+    QCOMPARE(spy.count(), 1);
 }
 
 
