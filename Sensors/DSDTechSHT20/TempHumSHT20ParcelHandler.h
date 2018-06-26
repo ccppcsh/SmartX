@@ -44,7 +44,7 @@ protected:
      * @brief handleParcel - this method handles received parcel and if this parcel was recognized, stores the received info and emits signal
      * @param parcel - received parcel to handle
      */
-    virtual void handleParcel(Parcel& parcel);
+    virtual void handleParcel(const Parcel& parcel);
 };
 
 #endif // TEMPHUMSHT20PARCELHANDLER_H
