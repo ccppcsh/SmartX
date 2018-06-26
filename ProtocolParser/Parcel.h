@@ -18,7 +18,7 @@ public:
      * @brief getBytes - returns a reference on array with received payload bytes
      * @return reference on QByteArray with received bytes
      */
-    const QByteArray& getBytes();
+    const QByteArray& getBytes() const;
     /**
      * @brief addByte stores received byte of payload
      * @param dataByte - received byte

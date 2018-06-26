@@ -10,7 +10,7 @@ Parcel::Parcel(const Parcel& p)
     mPayloadBytes = p.mPayloadBytes;
 }
 
-const QByteArray &Parcel::getBytes()
+const QByteArray &Parcel::getBytes() const
 {
     return mPayloadBytes;
 }
