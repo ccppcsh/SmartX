@@ -1,11 +1,11 @@
 #include "BaseParcelHandler.h"
 
-BaseParcelHandler::BaseParcelHandler()
+BaseParcelHandler::BaseParcelHandler(QObject *parent) : QObject(parent)
 {
 
 }
 
-void BaseParcelHandler::onParcelBuilt(Parcel &parcel)
+void BaseParcelHandler::onParcelBuilt(const Parcel &parcel)
 {
     handleParcel(parcel);
 }

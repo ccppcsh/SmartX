@@ -2,6 +2,7 @@
 #define BASEPARCELHANDLER_H
 
 #include <QObject>
+#include "Parcel.h"
 /**
  * @file    BaseParcelHandler.h
  * @date    2018-06-21
@@ -13,13 +14,13 @@ class BaseParcelHandler : public QObject
 {
     Q_OBJECT
 public:
-    BaseParcelHandler();
+    explicit BaseParcelHandler(QObject *parent = nullptr);
 protected:
     /**
      * @brief handleParcel - this method handles received parcel and if this parcel was recognized, stores the received info and emits signal
      * @param parcel - received parcel to handle
      */
-    virtual void handleParcel(Parcel& parcel) = 0;
+    virtual void handleParcel(const Parcel& parcel) = 0;
 signals:
     /**
      * @brief eventOccured - this signal will be emitted every time when received parcel was recognized and any information (sensors data,
@@ -32,7 +33,7 @@ public slots:
      * @brief onParcelBuilt - slot for handling of received parcel. Should be connected with signal of an object derived from BaseParser
      * @param parcel - received parcel to handle
      */
-    void onParcelBuilt(Parcel& parcel);
+    void onParcelBuilt(const Parcel& parcel);
 
 };
 
