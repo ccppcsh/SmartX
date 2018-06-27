@@ -37,7 +37,7 @@ void TempHumSHT20ParcelHandler::handleParcel(const Parcel &parcel)
     int posSecondEqualChar = bytesStr.lastIndexOf('=');
 
     // If not found - emit error
-    if ((posFirstEqualChar == -1) || (posWhiteSpaceChar == -1) || (posSecondEqualChar == -1))
+    if ((posFirstEqualChar == -1) || (posWhiteSpaceChar == -1) || (posSecondEqualChar == -1) || (posFirstEqualChar == posSecondEqualChar))
     {
         emit eventOccured(PARCEL_NOT_RECOGNIZED);
         return;
