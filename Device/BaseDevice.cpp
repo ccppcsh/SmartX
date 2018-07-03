@@ -1,6 +1,6 @@
 #include "BaseDevice.h"
 
-BaseDevice::BaseDevice(QObject *parent) : QObject(parent)
+BaseDevice::BaseDevice(BaseCommunicationInterface* comInterface, QObject *parent) : QObject(parent)
 {
-
+    mComInterface = comInterface;
 }
