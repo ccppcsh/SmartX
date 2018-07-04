@@ -70,7 +70,8 @@ protected:
     virtual bool isConnected();
 
 signals:
-
+    void sensorDataUpdated();
+    void sensorStatusChanged();
 public slots:
     /**
      * @brief onParcelHandlerEvent - sensor specific handler by handling a parcel

@@ -38,6 +38,10 @@ BaseSensor::~BaseSensor()
     QObject::disconnect(mComInterface, SIGNAL(onDataReceived(QByteArray)), mParser, SLOT(onDataReceived(QByteArray)));
     QObject::disconnect(mParser, SIGNAL(onParcelBuilt(Parcel)), mParcelHandler, SLOT(onParcelBuilt(Parcel)));
     QObject::disconnect(mParcelHandler, SIGNAL(eventOccured(int)), this, SLOT(onParcelHandlerEvent));
+
+    delete mComInterface;
+    delete mParser;
+    delete mParcelHandler;
 }
 
 
