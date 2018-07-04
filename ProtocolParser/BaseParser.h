@@ -27,7 +27,7 @@ signals:
      * @brief onParcelBuilt - signal which will be emited if a parcel was built from received bytes
      * @param parcel
      */
-    void onParcelBuilt(Parcel& parcel);
+    void onParcelBuilt(const Parcel& parcel);
 public slots:
     /**
      * @brief onDataReceived - slot which handles received data from communication interface
