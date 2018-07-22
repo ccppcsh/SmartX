@@ -9,6 +9,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += serialport
+QT += charts
 
 TARGET = SmartX
 TEMPLATE = app
@@ -39,7 +40,8 @@ SOURCES += \
     Sensors/DSDTechSHT20/TempHumSHT20Sensor.cpp \
     Sensors/DSDTechSHT20/TempHumSHT20Parser.cpp \
     Sensors/DSDTechSHT20/TempHumSHT20ParcelHandler.cpp \
-    View/BaseSensorView.cpp
+    View/BaseSensorView.cpp \
+    View/ChartSensorView.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +57,8 @@ HEADERS += \
     Sensors/DSDTechSHT20/TempHumSHT20Sensor.h \
     Sensors/DSDTechSHT20/TempHumSHT20Parser.h \
     Sensors/DSDTechSHT20/TempHumSHT20ParcelHandler.h \
-    View/BaseSensorView.h
+    View/BaseSensorView.h \
+    View/ChartSensorView.h
 
 FORMS += \
         mainwindow.ui
