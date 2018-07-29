@@ -38,12 +38,18 @@ BaseSensorView::BaseSensorView(BaseSensor *sensor)
 
 void BaseSensorView::addSensorValueChart(QString desc)
 {
-    ChartSensorView* chart = new ChartSensorView();
-    chart->setTitle(desc);
+    // Generate chart view
+    QChartView* chartView = new QChartView();
+    chartView->setFixedHeight(200);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    // Create chart
+    ChartSensorView* chart = new ChartSensorView(chartView, desc);
     chart->setAnimationOptions(QChart::AllAnimations);
 
-     QChartView* chartView = new QChartView(chart);
-     chartView->setRenderHint(QPainter::Antialiasing);
+    // Add chart
+    chartView->setChart(chart);
 
-     this->addWidget(chartView);
+    // Add to layout
+    this->addWidget(chartView, 0, Qt::AlignTop);
 }
