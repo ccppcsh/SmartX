@@ -49,9 +49,9 @@ public:
     QString getSensorDesc() const;
 private:
     QString mSensorDesc = "";
-    BaseParcelHandler* mParcelHandler = NULL;
     BaseParser* mParser = NULL;
 protected:
+    BaseParcelHandler* mParcelHandler = NULL;
     QList<SensorData> mSensorsDataList = QList<SensorData>();
     BaseSensor::SensorStatus mStatus = SensorStatus::SENSORE_INACTIVE;
 
