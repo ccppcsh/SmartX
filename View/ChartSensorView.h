@@ -10,7 +10,8 @@
  */
 
 #include <QtCharts/QChart>
-
+#include <QtCharts/QChartView>
+#include <QTime>
 
 QT_CHARTS_BEGIN_NAMESPACE
 class QSplineSeries;
@@ -23,14 +24,28 @@ class ChartSensorView : public QChart
 {
     Q_OBJECT
 public:
-    ChartSensorView(QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    ChartSensorView(QChartView* parentChart, QString title, QGraphicsItem *parent = 0, Qt::WindowFlags wFlags = 0);
+    /**
+     * @brief addValue - adds a new value to chart
+     * @param value - value to add
+     */
+    void addValue(float value);
+    /**
+     * @brief setUnit - add units to measured value
+     * @param unit - unit to display
+     */
+    void setUnit(QString unit);
 public slots:
     //void valueUpdated();
 private:
     QSplineSeries* mSerie;
     QStringList mTitles;
-    QValueAxis* mAxis;
-
+    QValueAxis* mAxisX;
+    QValueAxis* mAxisY;
+    QString mUnit = "";
+    QString mTitle = "";
+    QChartView* mParentChart = NULL;
+    QTime mLastTimeStamp;
 };
 
 #endif // CHARTSENSORVIEW_H
