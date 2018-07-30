@@ -46,6 +46,8 @@ private:
     QString mTitle = "";
     QChartView* mParentChart = NULL;
     QTime mLastTimeStamp;
+    qreal mMaxY = std::numeric_limits<qreal>::min();
+    qreal mMinY = std::numeric_limits<qreal>::max();
 };
 
 #endif // CHARTSENSORVIEW_H
