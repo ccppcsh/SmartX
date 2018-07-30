@@ -52,4 +52,7 @@ void BaseSensorView::addSensorValueChart(QString desc)
 
     // Add to layout
     this->addWidget(chartView, 0, Qt::AlignTop);
+
+    // Save in a map
+    mMapCharts.insert(desc, chart);
 }

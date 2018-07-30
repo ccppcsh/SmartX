@@ -23,11 +23,22 @@ public:
     BaseSensorView(BaseSensor* sensor);
 private:
     BaseSensor* mSensor;
+    QMap<QString, ChartSensorView*> mMapCharts;
     /**
      * @brief addSensorValueChart - generates sensor chart view for sensor parameter
      * @param desc - name of measured parameter by sensor
      */
     void addSensorValueChart(QString desc);
+private slots:
+    /**
+     * @brief onSensorValueUpdated - will be called when a sensor value update signal from
+     * sensor received
+     */
+    void onSensorValueUpdated();
+    /**
+     * @brief onSensorStateChanged - will be called when state of sensor was changed
+     */
+    void onSensorStateChanged();
 };
 
 #endif // BASESENSORVIEW_H
